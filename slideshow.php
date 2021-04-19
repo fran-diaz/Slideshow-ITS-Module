@@ -10,10 +10,10 @@ class slideshow extends base_component implements components_interface {
 
 		ob_start();
 		?>
-	    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+	    <div class="carousel slide" data-ride="carousel">
 	        <div class="carousel-inner">
 	            <?php
-	            if( $conjunto = $this->cfg( 'contenido', 'conjunto' ) ){
+	            if( $conjunto = $this -> cfg( 'contenido', 'conjunto' ) ){
 	            	$slides = $this -> _ITEC -> select( 'slideshow__slides', '*', ['slideshow__sets_id' => $conjunto ] );
 	            	if( $slides ){
 	            		foreach( $slides as $num => $slide ){ ?>
@@ -35,6 +35,10 @@ class slideshow extends base_component implements components_interface {
 			</a>
 	    </div>
 		<?php
+
+		$html = ob_get_contents();
+		ob_end_clean();
+
 		return $html;
 	}
 
